@@ -1,65 +1,70 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import Head from 'next/head';
+import styles from '../styles/Home.module.css';
+import styled from 'styled-components';
+
+import { ColourButton } from '../components/ColourButton';
+import { ColouringImage } from '../components/ColouringImage';
+import { useState } from 'react';
+
+const ButtonRow = styled.div`
+  display: flex;
+`;
 
 export default function Home() {
+  const [colour, setColour] = useState('green');
+
+  const handleChange = (col) => {
+    setColour(col);
+  };
+
   return (
-    <div className={styles.container}>
+      <main className={styles.container}>
       <Head>
         <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+      <ButtonRow>
+        <ColourButton
+          label='Orange'
+          clicker={handleChange}
+          colour='#f47e44'
+          currentColour={colour}
+        />
+        <ColourButton
+          label='Blue'
+          clicker={handleChange}
+          colour='#4a61ac'
+          currentColour={colour}
+        />
+        <ColourButton
+          label='Maroon'
+          clicker={handleChange}
+          colour='#522f43'
+          currentColour={colour}
+        />
+        <ColourButton
+          label='Teal'
+          clicker={handleChange}
+          colour='#4bbab6'
+          currentColour={colour}
+        />
+        <ColourButton
+          label='White'
+          clicker={handleChange}
+          colour='#f5ece5'
+          currentColour={colour}
+        />
+        <ColourButton
+          label='Pink'
+          clicker={handleChange}
+          colour='#f7a6b1'
+          currentColour={colour}
+        />
+      </ButtonRow>
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
+      <ColouringImage currentColour={colour} />
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
       </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
-  )
+  );
 }
